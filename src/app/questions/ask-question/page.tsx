@@ -1,11 +1,11 @@
+
 'use client'
 
-import QuestionForm from '@/components/pages/questions/ask-question/QuestionForm'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { createQuestion } from '@/api/questions'
+import QuestionForm from '@/components/pages/questions/ask-question/QuestionForm'
 
-// Main page for asking a question
 export default function AskQuestion() {
   const { toast } = useToast()
   const router = useRouter()
@@ -14,6 +14,7 @@ export default function AskQuestion() {
   async function handleFormSubmit(values: {
     title: string
     description: string
+    tags?: string[] // Accept tags from form values
   }) {
     try {
       const response = await createQuestion(values)
@@ -32,6 +33,11 @@ export default function AskQuestion() {
       }
     } catch (error) {
       console.error('Unexpected error:', error)
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: 'There was an unexpected error submitting your question.',
+      })
     }
   }
 
