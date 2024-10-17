@@ -153,7 +153,7 @@ export default function QuestionPage({
           // Update the comments state to include new comment
           setComments((prevComments) => ({
             ...prevComments,
-            [data.answer_id]: [...(prevComments[data.answer_id] || []), data],
+            [data.answer]: [...(prevComments[data.answer] || []), data],
           }))
         } else {
           toast({
@@ -162,6 +162,9 @@ export default function QuestionPage({
             description: errorMessage,
           })
         }
+
+        // Close comment form upon submit
+        setOpenCommentFormId(null)
       } catch (error) {
         console.error('Unexpected error:', error)
       }
@@ -185,7 +188,9 @@ export default function QuestionPage({
               <p className="text-lg text-gray-600">{question.description}</p>
               <p className="mt-4 text-gray-500">
                 Asked by:{' '}
-                {question.asker_id ? question.asker_id : 'Anonymous User'}
+                {question.asker_info?.username
+                  ? question.asker_info?.username
+                  : 'Anonymous User'}
               </p>
             </div>
             {/* Show all current answers below question, if answers exists */}
@@ -201,7 +206,9 @@ export default function QuestionPage({
                       Answer: {answer.response}
                       <p className="mt-4 text-gray-500">
                         Answered by:{' '}
-                        {answer.expert_id ? answer.expert_id : 'Anonymous User'}
+                        {answer.expert_info?.username
+                          ? answer.expert_info?.username
+                          : 'Anonymous User'}
                       </p>
                       {/* Show all current comments below answer, if comments exists */}
                       <div className="bg-slate-300">
@@ -215,7 +222,7 @@ export default function QuestionPage({
                                     key={comment.comment_id}
                                     className="mb-6 mt-6 rounded-lg bg-white p-6 shadow-lg"
                                   >
-                                    {`"${comment.response}" - ${comment.expert_id ?? 'Anonymous User'}`}
+                                    {`"${comment.response}" - ${comment.expert_info?.username ?? 'Anonymous User'}`}
                                   </div>
                                 ))}
                               </div>

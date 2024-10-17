@@ -67,7 +67,7 @@ const QuestionsPage: React.FC = () => {
               <div className="flex justify-between items-start">
                 <h2 className="text-xl font-semibold text-primary mb-2 text-balance">{question.title}</h2>
                 <div className="text-right">
-                  <p className="text-base text-foreground font-medium">{question.asker_id ?? 'Anonymous'}</p>
+                  <p className="text-base text-foreground font-medium">{question.asker_info?.username ?? 'Anonymous'}</p>
                   <p className="text-sm text-foreground font-medium">
                     {new Date(question.created_at).toLocaleDateString()}
                   </p>

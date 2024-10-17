@@ -1,5 +1,8 @@
+'use server'
+
 import { type ApiResponse } from '@/types/Api'
 import { type Question } from '@/types/Questions'
+import { getUser } from '@/utils/supabase/server'
 
 /**
  * Creates a new question by sending a POST request to the backend.
@@ -15,6 +18,10 @@ export const createQuestion = async (values: {
   description: string
 }): Promise<ApiResponse<{ question_id: string }>> => {
   try {
+    // TODO: DE ROCCO Please replace this with the user id from context
+    const user = await getUser()
+
+    const vals = { asker: user?.id, ...values }
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/questions/create/`,
       {
@@ -22,7 +29,7 @@ export const createQuestion = async (values: {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(vals),
       }
     )
 

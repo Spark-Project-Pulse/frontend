@@ -1,4 +1,5 @@
 import { type UUID } from 'crypto'
+import { type User } from './Users'
 
 export interface Project {
   project_id: UUID
@@ -7,6 +8,7 @@ export interface Project {
   description: string
   created_at: Date
   owner?: UUID
+  owner_info?: User
   repo_full_name?: string
 }
 

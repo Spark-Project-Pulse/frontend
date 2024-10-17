@@ -1,5 +1,8 @@
+'use server'
+
 import { type ApiResponse } from '@/types/Api'
 import { type Comment } from '@/types/Comments'
+import { getUser } from '@/utils/supabase/server'
 
 /**
  * Submits a comment to an answer.
@@ -15,6 +18,10 @@ export const createComment = async (commentData: {
   answer: string
 }): Promise<ApiResponse<Comment>> => {
   try {
+    // TODO: DE ROCCO Please replace this with the user id from context
+    const user = await getUser()
+
+    const vals = { expert: user?.id, ...commentData }
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/comments/create/`,
       {
@@ -22,7 +29,7 @@ export const createComment = async (commentData: {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(commentData),
+        body: JSON.stringify(vals),
       }
     )
 

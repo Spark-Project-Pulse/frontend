@@ -59,7 +59,12 @@ export default function ProjectPage({
               )}
             </div>
             <p className="text-lg text-gray-600">{project.description}</p>
-            <p className="mt-4 text-gray-500">Author: Anonymous User</p>
+            <p className="mt-4 text-gray-500">
+              Author:{' '}
+              {project.owner_info?.username
+                ? project.owner_info?.username
+                : 'Anonymous User'}
+            </p>
 
             {project.repo_full_name && (
               <div className="mt-4 flex justify-end">

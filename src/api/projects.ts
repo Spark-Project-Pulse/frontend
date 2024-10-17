@@ -1,5 +1,8 @@
+'use server'
+
 import { type ApiResponse } from '@/types/Api'
 import { type Project } from '@/types/Projects'
+import { getUser } from '@/utils/supabase/server';
 
 /**
  * Creates a new project by sending a POST request to the backend.
@@ -16,6 +19,11 @@ export const createProject = async (values: {
     description: string;
   }): Promise<ApiResponse<{ project_id: string }>> => {
     try {
+    // TODO: DE ROCCO Please replace this with the user id from context
+    const user = await getUser()
+
+    const vals = { owner: user?.id, ...values }
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/projects/create/`,
         {
@@ -23,7 +31,7 @@ export const createProject = async (values: {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify(vals),
         }
       );
   
