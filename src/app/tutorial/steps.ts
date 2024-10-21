@@ -10,18 +10,18 @@ export const steps: Tour[] = [
                 content: "Welcome to our website tour! We will walk you through how to buzz around CodeHive with ease.",
                 showControls: true,
                 showSkip: true,
-                nextRoute: "/questions/ask-question",
-                prevRoute: "/login",
+                nextRoute: "/projects/add-project",
+                prevRoute: "/tutorial",
             },
             {
                 icon: "🚀",
                 title: "Add a Project",
-                content: "Let's get started with NextStep! This is the Add a Project page where you can add new projects.",
+                content: "This is the Add a Project page where you can add new projects.",
                 selector: "#add-project-button",
                 showControls: true,
                 showSkip: true,
                 nextRoute: "/questions/ask-question",
-                prevRoute: "/login",
+                prevRoute: "/tutorial",
                 side: "bottom"
             },
             {

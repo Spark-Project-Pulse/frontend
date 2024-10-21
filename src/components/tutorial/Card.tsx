@@ -23,7 +23,7 @@ const CustomCard: React.FC<CardComponentProps> = ({
         <Card className="w-[350px]">
             <CardHeader>
                 <CardTitle className="flex items-center justify-between">
-                    <p>{step.title}</p>
+                    <p>{step?.title}</p>
                     {step.icon}
                 </CardTitle>
             </CardHeader>
