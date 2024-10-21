@@ -4,6 +4,9 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/universal/Navbar";
 import { UserProvider } from "@/app/contexts/UserContext";
+import { NextStepProvider, NextStep } from 'nextstepjs'
+import CustomCard from "@/components/tutorial/Card";
+import { steps } from "@/app/tutorial/steps";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,9 +36,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <UserProvider>
-          <Navbar />
-          {children}
-          <Toaster />
+          <NextStepProvider>
+            <NextStep steps={steps} cardComponent={CustomCard}>
+              <Navbar />
+              {children}
+              <Toaster />
+            </NextStep>
+          </NextStepProvider>
+
         </UserProvider>
       </body>
     </html>
