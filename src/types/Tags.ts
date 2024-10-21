@@ -6,6 +6,6 @@ export type Tag = {
 };
 
 export type TagOption = {
-  value: UUID;
+  value: string;
   label: string;
 };

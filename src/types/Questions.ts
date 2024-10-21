@@ -8,5 +8,6 @@ export interface Question {
   created_at: Date
   asker_id?: UUID
   asker_info?: User,
+  tags?: string[],
   related_project_id?: UUID
 }
