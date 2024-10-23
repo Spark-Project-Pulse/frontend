@@ -3,7 +3,7 @@
 export default function Home() {
 
   return (
-    <section className="py-24">
+    <section className="flex items-center justify-center" style={{ height: 'calc(100vh - 4rem)' }}>
       <div className="text-h1 font-bold uppercase font-heading tracking-wider">
         <div className="text-secondary-foreground">
           Welcome to

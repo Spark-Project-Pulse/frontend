@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import { LoadingSpinner } from '@/components/ui/loading';
 import { useRouter } from 'next/navigation';
 import { getAllTags } from '@/api/tags';
-import { TagOption } from '@/types/Tags';
-import { Question } from '@/types/Questions';
+import { type TagOption } from '@/types/Tags';
+import { type Question } from '@/types/Questions';
 import { getAllQuestions } from '@/api/questions';
 import { MultiSelector } from '@/components/ui/MultiSelector';
-import { ApiResponse } from '@/types/Api';
+import { type ApiResponse } from '@/types/Api';
 
 const QuestionsPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -87,7 +87,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl p-6">
       <h1 className="text-h2 font-bold font-subHeading text-center text-secondary-foreground">Questions</h1>
 
       <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
